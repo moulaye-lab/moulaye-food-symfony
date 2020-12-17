@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier les informations du restaurant{% endblock %}
+
+
+{% block body %}
+
+          <div class="jumbotron">
+            
+            <div class="col-md-8 mx-auto mt-2">
+            <h1 class='text-decoration-underline'>Gerer Mon restauraut </br> ( {{restaurant.nom}} ) </h1>
+        </div>
+
+        </div>
+        
+    <div class="row mt-5">
+
+          
+            
+        <div class="col-md-4 "> 
+            
+            <div class="card-body ">  
+                <img src="{{ ( asset('build/images/images.jpg')) }}" width="300">
+                <a href="{{path('app_edit_restaurant',{'id':restaurant.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block">Editer le restaurant</button></a>
+            </div>
+        </div>
+            
+        <div class="col-md-4"> 
+            <div class="card-body">  
+                <img src="{{ ( asset('build/images/menu2.jpg')) }}" width="300">
+                <a href="{{path('app_gestion_menu',{'id':restaurant.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block">Gerer le menu</button></a>
+            </div>
+        </div>
+        
+        <div class="col-md-4"> 
+            <div class="card-body">  
+                <img src="{{ ( asset('build/images/menu3.jpg')) }}"width="300" >
+                 <a href ="{{ path('app_delete_restaurant' , {'id': restaurant.id }) }}">
+                 
+                 {% if restaurant.actived == "0" %}
+                   <button class="btn btn-success btn-lg btn-block">  Activer le restaurant </button>
+                 {% else %}
+                  <button class="btn btn-success btn-lg btn-block">    Desactiver le restaurant </button>
+                 {% endif %}
+                 
+                    </a>
+            </div>
+        </div>
+
+                                
+    </div>
+    
+
+{% endblock %}

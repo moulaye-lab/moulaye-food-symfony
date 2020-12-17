@@ -1,6 +1,15 @@
 {
+    "bacon/bacon-qr-code": {
+        "version": "2.0.3"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99"
+    },
+    "dasprid/enum": {
+        "version": "1.0.3"
+    },
+    "dnoegel/php-xdg-base-dir": {
+        "version": "v0.1.1"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -81,8 +90,36 @@
     "egulias/email-validator": {
         "version": "2.1.23"
     },
+    "endroid/qr-code": {
+        "version": "3.9.6"
+    },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
+    "jms/metadata": {
+        "version": "2.3.0"
+    },
+    "khanamiryan/qrcode-detector-decoder": {
+        "version": "1.0.4"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "5a5bdc2d0e2533ed6935d5ae562f2b318a8fc1ee"
+        },
+        "files": [
+            "./config/packages/liip_imagine.yaml",
+            "./config/routes/liip_imagine.yaml"
+        ]
+    },
     "monolog/monolog": {
         "version": "2.1.1"
+    },
+    "myclabs/php-enum": {
+        "version": "1.7.7"
     },
     "nikic/php-parser": {
         "version": "v4.10.2"
@@ -116,6 +153,9 @@
     },
     "psr/log": {
         "version": "1.1.3"
+    },
+    "psy/psysh": {
+        "version": "v0.10.4"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -418,6 +458,9 @@
     "symfony/string": {
         "version": "v5.1.8"
     },
+    "symfony/templating": {
+        "version": "v5.1.8"
+    },
     "symfony/test-pack": {
         "version": "v1.0.7"
     },
@@ -493,14 +536,48 @@
             "./config/routes/dev/web_profiler.yaml"
         ]
     },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.6",
+            "ref": "69e1d805ad95964088bd510c05995e87dc391564"
+        },
+        "files": [
+            "./assets/app.js",
+            "./assets/styles/app.css",
+            "./config/packages/assets.yaml",
+            "./config/packages/prod/webpack_encore.yaml",
+            "./config/packages/test/webpack_encore.yaml",
+            "./config/packages/webpack_encore.yaml",
+            "./package.json",
+            "./webpack.config.js"
+        ]
+    },
     "symfony/yaml": {
         "version": "v5.1.8"
+    },
+    "theofidry/psysh-bundle": {
+        "version": "4.3.0"
     },
     "twig/extra-bundle": {
         "version": "v3.1.1"
     },
     "twig/twig": {
         "version": "v3.1.1"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        },
+        "files": [
+            "./config/packages/vich_uploader.yaml"
+        ]
     },
     "webmozart/assert": {
         "version": "1.9.1"

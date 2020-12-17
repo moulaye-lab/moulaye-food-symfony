@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+
+        {% block stylesheets %}
+        
+        {{ encore_entry_link_tags('app') }} {# lié a wepack encore pour charger le css#}
+
+        {% endblock %}
+
+        
+    </head>
+    <body>
+        <div class="container">
+       {{include ('layouts/partials/navbar.html.twig')}}</div>
+            {% for type ,messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                
+            {% endfor %}
+
+        <main role="main"><div class="container">
+            {% block body %}{% endblock %}
+        </main></div>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+
+        {% endblock %}
+    </body>
+</html>

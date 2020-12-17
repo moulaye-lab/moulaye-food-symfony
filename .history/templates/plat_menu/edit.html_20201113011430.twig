@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier les informations du restaurant{% endblock %}
+
+
+{% block body %}
+    
+
+    <div class="row  mt-5 ">
+        <div class="col-md-6 mx-auto">
+            <h2>Plat : {{plat.nom}}
+            <h4>Modifier les informations </br> en le remplacants dans les champs </h4>
+            {{form_start(AddPlatForm)}}
+                {{form_row(AddPlatForm.nom, {'attr' : {'placeholder':'Nom du plat'}}) }}
+                {{form_row(AddPlatForm.description, {'attr' : {'placeholder':'description'}}) }}
+                {{form_row(AddPlatForm.prix, {'attr' : {'placeholder':'prix'}}) }} 
+                {{form_row(AddPlatForm.imageFile ) }} 
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Mettre à jour
+             
+                </button>
+            
+            {{form_end(AddPlatForm)}}
+                          
+                  
+
+        </div>
+          
+                       
+
+    </div>
+
+{% endblock %}

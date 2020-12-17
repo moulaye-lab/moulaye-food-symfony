@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Creer un plat{% endblock %}
+
+{% block body %}
+    <div class="row  mt-5 ">
+        <div class="col-md-6 mx-auto">
+            <h1>Creer un palt </h1>
+            {{form_start(createResto)}}
+                {{form_row(AddPlatForm.nom, {'attr' : {'placeholder':'Nom du plat'}}) }}
+                {{form_row(AddPlatForm.description, {'attr' : {'placeholder':'description'}}) }}
+                {{form_row(AddPlatForm.prix, {'attr' : {'placeholder':'prix'}}) }} 
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Ajouter un palt
+                </button>
+            
+            {{form_end(AddPlatForm)}}
+        </div>
+    </div>
+
+{% endblock %}

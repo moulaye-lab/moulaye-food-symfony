@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion du menu{% endblock %}
+
+{% block body %}
+
+{% if categories|length > 0 %}
+        <h1 class="mt-5">Ajouter des catégories au restaurant {{restaurant.nom}}</h1>
+          {% for row in categories|batch(3) %}
+            <div class='row'>
+          {% for categories in row %}
+           <div class="col-md-4 mt-5"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+
+    <div class="card-header"><h3 class="mx-auto">{{categories.nom}}</h3></div>
+    <div class="card-body">
+        <img src="{{ ( asset('build/images/menu2.jpg')) }}" width="200" class="center">
+        <h4 class="card-title">{{categories.description}}</h4>
+        
+      <a href="#"  <button type="button"class="btn btn-success btn-lg btn-block">Ajouter des plats</button></a>
+    </div>
+    </div>
+    </div>
+        {% endfor %}
+          </div>
+        {% endfor %}
+  {% else %}
+       <p class="h1 mt-5 text-center">Aucune catégorie de plats pour {{restaurant.nom}} </br>Veuillez <a href="{{path('app_create_categorie',{'id':restaurant.id}) }}"> creer des catégories pour y ajouter de plats </a>
+  {% endif %} 
+ 
+{% endblock %}

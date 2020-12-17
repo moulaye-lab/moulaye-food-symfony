@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur Moulaye-food{% endblock %}
+
+
+{% block body %}
+
+{% if app.user %}
+
+<div class="row mt-2" >
+      
+        <div class="col-md-3"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">MES RESTAURANTS</div>
+    <div class="card-body">
+         
+        <h4 class="card-title"></h4>
+         <img src="{{ (asset('build/images/images.jpg')) | imagine_filter('images_medium')}}"
+
+        class="w-100 rounded-top" />
+     
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+{% endblock %}

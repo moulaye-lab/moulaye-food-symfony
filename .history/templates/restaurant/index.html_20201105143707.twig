@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes restaurants {% endblock %}
+
+{% block body %}
+  {% if restaurants|length > 0 %}
+    <button class="btn-lg btn-primary mx-auto mt-20">Nouveau Restaurant </button>
+          {% for row in restaurants|batch(3) %}
+            <div class='row mt-25'>
+          {% for restaurants in row %}
+              <div class="col-md-4 ">
+                <article class=" pin rounded shadow center">
+                  <div class="mw-100 overflow-hidden  rounded-top">
+                      <a href="#">  
+                         <h1 class="h5 pt-2git pl-3"><a href="#" class="text-secondary text-decration-none">{{restaurants.nom}}</a></h1>
+                          <h1 class="h5 pt-2git pl-3"><a href="#" class="text-secondary text-decration-none">{{restaurants.localisation}}</a></h1>
+
+
+                      </a>
+                    </div> 
+          
+                    <h1 class="h5 pt-2git pl-3"><a href="#" class="text-secondary text-decration-none">{{restaurants.specialite}}</a></h1>
+          
+                </article>
+              </div>
+        {% endfor %}
+          </div>
+        {% endfor %}
+  {% else %}
+       <p class="h1 mt-5 text-center">Aucun Restaurant enregistrer  </br> <a href="#">Creer votre premier restaurant </a>
+  {% endif %} 
+{% endblock %}

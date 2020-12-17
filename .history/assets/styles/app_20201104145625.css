@@ -1,0 +1,27 @@
+@import url('https://bootswatch.com/4/darkly/bootstrap.css');
+
+
+body {
+    background-color: lightgray;
+}
+
+.alert{
+    padding:10px;
+    color:white;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: green;
+
+}
+
+.alert-error {
+    background-color: red;
+
+}
+
+.alert-info {
+    background-color: blue;
+
+}

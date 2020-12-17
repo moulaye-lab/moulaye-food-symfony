@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur Moulaye-food{% endblock %}
+
+
+{% block body %}
+
+{% if app.user %}
+
+<div class="row mt-2" >
+      
+        <div class="col-md-3"> 
+  
+    
+        <H4>MES RESTAURANTS</H4>
+         <img src="{{ (asset('build/images/images.jpg'))}}"
+
+        class="w-100 rounded-top" />
+     
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+{% endblock %}

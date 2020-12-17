@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajouter restaurants{% endblock %}
+
+
+{% block body %}
+    
+    <h3 class="mt-5 ml-20">Vous avez  {{totalTables | length}}   Tables </h3>
+
+    <div class="row  mt-5 ">
+        <div class="col-md-6 mx-auto">
+            {{form_start(nbresTables)}}
+                {{form_row(nbresTables.nombresTables)}}
+                
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Ajouter
+             
+                </button>
+            
+            {{form_end(nbresTables)}}
+                          
+                  
+
+        </div>
+
+           <div class="row">
+        
+        {% for tables in totalTables %}
+            <div class="col-md-8 mt-5 mx-auto" >
+            <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Numero de table</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{tables.id}}</th>
+      {% if tables.Nom == null %}
+      <td>Aucun Nom de table</td>
+      {% else %}
+        
+        <td>{{tables.Nom}}</td>
+  
+      {% endif %}
+      <td>{{tables.Numero}}<td>
+      <td><a href =""> Editer </a> </br> <a href =""> Supprimer </a>  <td>
+
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+        {% endfor %}
+          
+                       
+
+    </div>
+
+{% endblock %}

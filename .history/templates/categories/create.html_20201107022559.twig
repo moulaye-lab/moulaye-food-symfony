@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Creer une categorie{% endblock %}
+
+{% block body %}
+    <div class="row  mt-5 ">
+        <div class="col-md-6 mx-auto">
+            <h1>Creer une catégorie </h1>
+            {{form_start(createCtagorie)}}
+                {{form_row(createCtagorie.nom, {'attr' : {'placeholder':'Nom du restaurant'}}) }}
+                {{form_row(createCtagorie.description, {'attr' : {'placeholder':'description'}}) }}
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Ajouter une categorie
+             
+                </button>
+            
+            {{form_end(createCtagorie)}}
+        </div>
+    </div>
+
+{% endblock %}

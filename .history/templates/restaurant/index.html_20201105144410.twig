@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+
+
+ 
+
+<div class="jumbotron">
+    <div class="col-md-6 mx-auto mt-5">
+    <h1 class='text-decoration-underline'>Mes Restaurants</h1>
+</div>
+
+</div>
+
+{% for row in Restaurants|batch(3) %}
+    <div class="row mt-5" >
+       {% for restaurants in row %}
+        <div class="col-md-4"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{restaurants.nom}}</div>
+    <div class="card-body">
+         
+        <h4 class="card-title">{{restaurants.specialite}}</h4>
+        <p class="card-text">{{property.localisation}}</p>
+        
+        <button type="button"class="btn btn-success btn-lg btn-block"><a href="{{ }}">Editer</button>
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+<div class="pagination">
+{{ knp_pagination_render(property) }}
+</div>
+{% endblock %}
+
