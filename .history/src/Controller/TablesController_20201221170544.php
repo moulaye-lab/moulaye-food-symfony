@@ -17,8 +17,6 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\LabelAlignment;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 class TablesController extends AbstractController
 {
@@ -178,55 +176,43 @@ class TablesController extends AbstractController
  
 
         /**
-     * @Route("/tables/{id<[0-9]+>}/upload", name="app_uploads_tables", methods="GET")
+     * @Route("/tables/{id<[0-9]+>}/edit", name="app_edit_tables", methods={"POST","GET"})
      */
-    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Void
+    public function uploadsTable(Tables $table,Request $request,EntityManagerInterface $em): Response
     {   
         
         if ($table->getRestaurant()->getProprietaire() != $this->getUser() | $this->getUser()===null) {
             $this->addFlash('danger','Accès réfusé');
            die();
         }
+        $form=$this->createForm(TablesType::class,$table);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+            $em->persist($table);
+            $em->flush();
+            $nom=$table->getNom();
+            $restaurant=$table->getRestaurant()->getId();
+            $this->addFlash('success',"Votre table s'appelle desormais $nom" );
 
-         
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-        
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('tables/uploads.html.twig', [
+          $this->redirectToRoute("app_ajouter_tables",[
+                'restaurant'=> $restaurant,
+                'table' => $table
+
+            ]);
             
-            'restaurant'=> $table->getRestaurant(),
-            
+
+        }
+        
+        return $this->render('tables/edit.html.twig', [
+            'createResto' => $form->createView(),
+            'restaurant'=> $table->getRestaurant()->getId(),
             'table' => $table
         ]);
-        
-        
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        
-
-        // Output the generated PDF to Browser
-        $dompdf->stream();
     }
-        
-         
 
-           
-            
 
-        
-  
+
 
 
 }

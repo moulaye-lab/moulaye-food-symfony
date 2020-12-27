@@ -178,9 +178,9 @@ class TablesController extends AbstractController
  
 
         /**
-     * @Route("/tables/{id<[0-9]+>}/upload", name="app_uploads_tables", methods="GET")
+     * @Route("/tables/{id<[0-9]+>}/edit", name="app_edit_tables", methods={"POST","GET"})
      */
-    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Void
+    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Response
     {   
         
         if ($table->getRestaurant()->getProprietaire() != $this->getUser() | $this->getUser()===null) {
@@ -197,13 +197,9 @@ class TablesController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
         
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('tables/uploads.html.twig', [
-            
-            'restaurant'=> $table->getRestaurant(),
-            
-            'table' => $table
+        $html = $this->renderView('default/mypdf.html.twig', [
+            'title' => "Welcome to our PDF Test"
         ]);
-        
         
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
@@ -214,10 +210,10 @@ class TablesController extends AbstractController
         // Render the HTML as PDF
         $dompdf->render();
 
-        
-
-        // Output the generated PDF to Browser
-        $dompdf->stream();
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
     }
         
          
@@ -226,7 +222,16 @@ class TablesController extends AbstractController
             
 
         
-  
+        
+        return $this->render('tables/uploads.html.twig', [
+            
+            'restaurant'=> $table->getRestaurant()->getId(),
+            'table' => $table
+        ]);
+    }
+
+
+
 
 
 }

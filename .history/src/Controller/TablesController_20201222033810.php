@@ -180,7 +180,7 @@ class TablesController extends AbstractController
         /**
      * @Route("/tables/{id<[0-9]+>}/upload", name="app_uploads_tables", methods="GET")
      */
-    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Void
+    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo) 
     {   
         
         if ($table->getRestaurant()->getProprietaire() != $this->getUser() | $this->getUser()===null) {
@@ -216,8 +216,10 @@ class TablesController extends AbstractController
 
         
 
-        // Output the generated PDF to Browser
-        $dompdf->stream();
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
     }
         
          

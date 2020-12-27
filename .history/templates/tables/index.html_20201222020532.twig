@@ -51,8 +51,8 @@
   
       {% endif %}
       <td>{{tables.Numero}}<td>
-       <td><a href="{{path('app_edit_tables',{'id':tables.id})}}">Editer</a> </br> <a href="#"> Supprimer </a> </br> <a href="{{path('app_uploads_tables', {id:tables.id})}}"> Telecharger la fiche table</a></td> </br>
-       
+       <td><a href="{{path('app_edit_tables',{'id':tables.id})}}">Editer</a> </br> <a href="#"> Supprimer </a></td> </br>
+       <a href="{{path('app_uploads_tables', {id:tables.id})}}"> Telecharger la fiche table</a>
     </tr>
     
   </tbody>

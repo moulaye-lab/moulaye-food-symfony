@@ -17,8 +17,6 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\LabelAlignment;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 class TablesController extends AbstractController
 {
@@ -178,9 +176,9 @@ class TablesController extends AbstractController
  
 
         /**
-     * @Route("/tables/{id<[0-9]+>}/upload", name="app_uploads_tables", methods="GET")
+     * @Route("/tables/{id<[0-9]+>}/edit", name="app_edit_tables", methods={"POST","GET"})
      */
-    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Void
+    public function uploadsTable(Tables $table,Request $request,TablesRepository $repo): Response
     {   
         
         if ($table->getRestaurant()->getProprietaire() != $this->getUser() | $this->getUser()===null) {
@@ -189,36 +187,7 @@ class TablesController extends AbstractController
         }
 
          
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-        
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-        
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('tables/uploads.html.twig', [
-            
-            'restaurant'=> $table->getRestaurant(),
-            
-            'table' => $table
-        ]);
-        
-        
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        
-
-        // Output the generated PDF to Browser
-        $dompdf->stream();
-    }
         
          
 
@@ -226,7 +195,16 @@ class TablesController extends AbstractController
             
 
         
-  
+        
+        return $this->render('tables/uploads.html.twig', [
+            
+            'restaurant'=> $table->getRestaurant()->getId(),
+            'table' => $table
+        ]);
+    }
+
+
+
 
 
 }

@@ -216,8 +216,10 @@ class TablesController extends AbstractController
 
         
 
-        // Output the generated PDF to Browser
-        $dompdf->stream();
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
     }
         
          
