@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur Moulaye-food{% endblock %}
+
+
+{% block body %}
+
+{% if app.user %}
+
+<div class="mt-5">
+
+<div class="row "  >
+      
+        
+        
+        <div class="col-md-4 ">
+        <H3 class="mx-auto">MES RESTAURANTS</H3>
+        <a href="{{path('app_restaurant')}}">
+         <img src="{{ (asset('build/images/restos.jpg'))  | imagine_filter('images_medium')}}"
+
+          /> </div> </a>
+
+
+        <div class="col-md-4"><H3  class="mx-auto" >MON COMPTE</H3>
+         <img src="{{ (asset('build/images/moncompte.jpg'))  | imagine_filter('images_medium')}}"
+
+           /> </div>
+
+        <div class="col-md-4"><H3  class="mx-auto">MES COMMANDES</H3>
+         <img src="{{ (asset('build/images/mescommandes.jpg'))   | imagine_filter('images_medium')}}"
+
+          /> </div>
+        
+    
+     </div>
+   </div>
+
+
+
+
+{% else %}
+    
+<div class="jumbotron">
+<div class="col-md-8 mx-auto mt-2">
+<img src="{{ (asset('build/images/banner.jpg'))}}"
+
+         /> </div>
+
+</div>
+</div>
+{% endif %}
+
+
+
+
+{% endblock %}

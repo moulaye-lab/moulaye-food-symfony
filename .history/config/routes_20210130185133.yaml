@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+easy_admin_bundle:
+    resource: 'App\Controller\Admin\AdminController'
+    prefix: /admin
+    type: annotation

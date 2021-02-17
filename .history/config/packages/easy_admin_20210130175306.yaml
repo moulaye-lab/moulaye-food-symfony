@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        User:
+            class: App\Entity\User
+            controller: App\Controller\Admin\AdminController
+            form:
+                fields:
+                    - { property: 'password', type: 'password' }

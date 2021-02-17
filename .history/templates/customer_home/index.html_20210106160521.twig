@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BIENVENUE AU Restaurant {{resto.nom}}{% endblock %}
+
+{% block body %}
+
+
+<style>
+.flotte{
+    float:left;
+}
+
+.liens{
+
+    clear:both;
+}
+
+</style>
+<div>
+<p class="flotte">
+<img src="{{ (resto.imageName ? vich_uploader_asset(resto,'imageFile') : asset('build/images/logo.jpg')) | imagine_filter('images_medium') }}"
+     class="w-100 rounded-top"  alt="{{resto.nom}} " width="200"/></p>
+<p style="line-height:65px;">
+     <h4 class='mx-auto'>BIENVENUE A {{resto.nom}} </br> VOUS ÊTES ASSIS A LA TABLE {{table.numero}}</h4>
+     </br>
+     <p>{{reso.specialite}}</p>
+
+
+</p>
+</p>	
+<div>
+<div class="liens">
+        <span > <button class="btn-lg btn-primary">INFOS</button>  <a href="{{ path('customer_home_menu',{'restaurant':resto.id,'table':table.numero} )}}"><button class="btn-lg btn-primary">MENU </button></a> </span>
+</div>
+ 
+
+
+
+
+
+{% endblock %}
+

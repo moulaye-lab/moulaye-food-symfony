@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}INFORMATIONS {{restaurant.nom}}{% endblock %}
+
+{% block body %}
+
+    <div class="row mt-5">
+    <div class="col-md-4">
+
+    <img src="{{ (restaurant.imageName ? vich_uploader_asset(restaurant,'imageFile') : asset('build/images/logo.jpg')) | imagine_filter('images_medium') }}"
+      alt="{{restaurant.nom}} " /></p>
+    </div>
+
+    <div class="col-md-6">
+    <h1>{{restaurant.nom}}</h1>
+    <h1>{{restaurant.localisation}}</h1>
+    <h1>{{restaurant.specialite}}</h1>
+    <h1>{{restaurant.telephone }}</h1>
+
+    </div>
+</div>
+</div>
+
+
+<p>{{restaurant.description}}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}INFORMATIONS {{restaurant.nom}}{% endblock %}
+
+{% block body %}
+
+    <img src="{{ (restaurant.imageName ? vich_uploader_asset(restaurant,'imageFile') : asset('build/images/logo.jpg')) | imagine_filter('images_small') }}"
+      alt="{{restaurant.nom}} " /></p>
+
+ 
+
+
+{% endblock %}

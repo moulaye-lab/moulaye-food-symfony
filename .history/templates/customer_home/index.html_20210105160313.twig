@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BIENVENUE AU Restaurant {{resto.id}}{% endblock %}
+
+{% block body %}
+
+
+ 
+
+<div class="jumbotron">
+    
+    <div class="col-md-8 mx-auto mt-2">
+    <img src="{{ (restaurant.imageName ? vich_uploader_asset(restaurant,'imageFile') : asset('build/images/logo.jpg')) }}"
+
+    <h1 class='text-decoration-underline'>BIENVENUE AU RESTAURANT {{resto.nom}} vous êtes assis à la table {{table.id}}</h1>
+  <a href="{{path('app_create_restaurant')}}" > <button class="btn btn-primary ">Ajouter Restaurant</button></a>
+</div>
+
+</div>
+
+{% for row in restaurants|batch(3) %}
+    <div class="row mt-2" >
+       {% for restaurants in row %}
+        <div class="col-md-4"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{restaurants.nom}}</div>
+    <div class="card-body">
+         
+        <h4 class="card-title">{{restaurants.specialite}}</h4>
+        <p class="card-text">{{restaurants.localisation}}</p>
+        
+      <a href="{{path('app_gestion_restaurant',{'id':restaurants.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block">Gérer</button></a>
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+
+{% endblock %}
+

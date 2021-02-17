@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BIENVENUE AU Restaurant {{resto.nom}}{% endblock %}
+
+{% block body %}
+
+
+ 
+
+<div class="jumbotron">
+    
+    <div class="col-md-8 mx-auto mt-2">
+    <img src="{{ (restaurant.imageName ? vich_uploader_asset(restaurant,'imageFile') : asset('build/images/logo.jpg')) }}"
+     class="w-100 rounded-top"  alt="{{restaurant.nom}} " width="200"/>
+    <h1 class='text-decoration-underline'>BIENVENUE AU RESTAURANT {{resto.nom}} vous êtes assis à la table {{table.id}}</h1>
+</div>
+
+</div>
+
+
+
+{% endblock %}
+

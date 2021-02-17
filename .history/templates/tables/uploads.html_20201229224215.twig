@@ -1,0 +1,32 @@
+
+	<style type="text/css">
+	#titre
+	 {
+		 color:red;
+		 text-align:center;
+		 font-size:60px;
+	}
+
+	#codeQr{
+		margin-left:200px;
+	}
+
+	</style>
+
+
+
+
+    <div class="container">
+
+    <div class="row  mt-5 ">
+        <h1 class=" mx-auto" id="titre">BIENVENUE A{{restaurant}}</h1>
+		<h3 class=" mx-auto" id="titre">Vous êtes à la table  {{table.NUMERO}}</h3>
+
+        <div class="col-md-6 mx-auto">
+           
+		                   <img  src="../public/build/restaurant.{{restaurant}}/{{table.codeQr}}" width="300" class="mx-auto mt-10 mb-10" id="codeQr">
+
+    
+</div>
+<p>SCANNEZ LE CODE POUR ACCEDER AUX INFORMATIONS DU RESTAURANT ET A LA CARTE DE MENU  </p>
+</div>

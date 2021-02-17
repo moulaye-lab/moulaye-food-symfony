@@ -1,0 +1,13 @@
+
+easy_admin:
+    entities:
+        User:
+            class: App\Entity\User
+            # Notre controller spécifique
+            controller: App\Controller\Admin\User\UserAdminController
+            form:
+                fields:
+                    # Fomulaire de création / modification d'un utilisateur
+                    - { property: 'email'}
+                    # Ici on retrouve notre propriété plainPassword pour la modification du mot de passe 
+                    - { property: 'plainPassword', type: 'password', type_options: { required: false }}
