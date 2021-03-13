@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier les informations du restaurant{% endblock %}
+
+
+{% block body %}
+    
+
+    <div class="row  mt-5 ">
+        <div class="col-md-6 mx-auto">
+            <h4>Modifier les informations </br> en le remplacants dans les champs </h4>
+            {{form_start(createResto)}}
+                {{form_row(createResto.nom, {'attr' : {'placeholder':'Nom du restaurant'}}) }}
+                {{form_row(createResto.specialite, {'attr' : {'placeholder':'specialite'}}) }}
+                {{form_row(createResto.localisation, {'attr' : {'placeholder':'localisation'}}) }} 
+                 {{form_row(createResto.telephone, {'attr' : {'placeholder':'Numero de telephone'}}) }}
+                {{form_row(createResto.description, {'attr' : {'placeholder':'Décrivez votre restaurant'}}) }}
+                {{form_row(createResto.twitter, {'attr' : {'placeholder':'lien twitter'}}) }}
+                {{form_row(createResto.facebook, {'attr' : {'placeholder':'lien facebook'}}) }}
+                {{form_row(createResto.instagram, {'attr' : {'placeholder':'lien instagram'}}) }}
+                {{form_row(createResto.imageFile) }} 
+                {{form_row(createResto.imagesRestos) }} 
+
+                 
+                    {% for row in restaurant.imagesRestos|batch(4) %}
+
+
+                            <div class="row mt-2" >
+                            {% for img in row %}
+                                <div class="col-md-3">
+                                            <img src ="{{asset('/uploads/images_restaurants/' ~ img.name)}}">
+                        
+                       <a href ="#" onclick="event.preventDefault(); confirm('Are you sure ') && document.getElementById('js-pin-delete-form').submit(); " class="btn btn-danger">Delete</a>
+            
+                            
+
+                       {% endfor %}
+                       <form id="js-pin-delete-form" action="{{ path('images_delete_image' , {'id': img.id }) }}" method="post" style="display:none;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_' ~ img.id)}}">
+                            </form>
+                       </div>
+                    {% endfor %}
+                    </div>
+
+               
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Mettre à jour
+             
+                </button>
+            
+            {{form_end(createResto)}}
+                          
+                  
+
+        </div>
+          
+                       
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MON COMPTE{% endblock %}
+
+{% block body %}
+
+<h1 class="mx-auto mt-5 " >BIENVENUE SUR VOTRE COMPTE {{user.username|upper}}</h1>
+
+<div class="row mt-5 mx-auto">
+
+    <div class="col-md-6">
+         <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header"><h4 class="ml-3">MES RESTAURANTS</h4></div>
+  <div class="card-body">
+    <p class="card-text">vous avez 4 restaurants sur la plateforme</p>
+   <a href ="{{path("app_restaurant")}}" <button class="btn-lg btn-info btn-block">Voir</button>
+  </div>
+</div>
+
+    </div>
+
+
+     <div class="col-md-6">
+               <div class="card text-white bg-primary mb-3 ml-5" style="max-width: 20rem;">
+  <div class="card-header"><h4 class="ml-3">RESTAURANT LE PLUS FREQUENTÉ</h4></div>
+  <div class="card-body">
+    <p class="card-text">le restaurant le plus frequenté est "CHEZ TALAAT"</p>
+    <button class="btn-lg btn-info btn-block">Voir</button>
+  </div>
+    </div>
+
+    
+
+</div>
+
+<div class="col-md-8 mx-auto ml-5 mt-5">
+    <h1 class="ml-5" >Mes Informations de compte </h1>
+            <h4 class="mx-auto">Vous pouvez les modifier en changeant les remplacant dans les champs</h4>
+  </div> 
+
+  <div class="col-md-8 mx-auto mt-3">            
+            {{form_start(editUserForm)}}
+                {{form_row(editUserForm.username, {'attr' : {'placeholder':'Nom d\'utilisateur  '}}) }}
+                {{form_row(editUserForm.email, {'attr' : {'placeholder':'email'}}) }}
+                {{form_row(editUserForm.contact, {'attr' : {'placeholder':'contact'}}) }}
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Modifier mes informations
+             
+                </button>
+            
+            {{form_end(editUserForm)}}
+         
+ 
+</div>
+{% endblock %}
