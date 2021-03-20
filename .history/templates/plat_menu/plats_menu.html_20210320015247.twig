@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}plats{% endblock %}
+
+{% block body %}
+
+
+ 
+
+{% if plats|length > 0 %}
+
+<div class="jumbotron">
+    
+    <div class="col-md-8 mx-auto mt-2 text-center text-uppercase ">
+    <h1 class='text-decoration-underline'>Restaurant: {{restaurant.nom}}/ catégorie:{{categorie.nom}}</h1>
+  <a href="{{path('add_plat_menu',{'restaurant':restaurant.id , 'categorie':categorie.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block" > Ajouter un produit</button></a>
+</div>
+
+</div>
+{% for row in plats|batch(4) %}
+
+
+    <div class="row mt-2" >
+       {% for plats in row %}
+        <div class="col-md-3"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{plats.nom}}</div>
+    <div class="card-body">
+         
+        <h4 class="card-title">{{plats.prix}} Francs</h4>
+         <img src="{{ (plats.imageName ? vich_uploader_asset(plats,'imageFile') : asset('build/images/images.jpg')) | imagine_filter('images_medium')}}"
+
+        class="w-100 rounded-top"  alt="{{plats.nom}}"/>
+        <p class="card-text">{{ plats.description ? plats.description : "Aucune description pour ce plat"}}</p>
+      <a href="{{path('edit_plat_menu',{'restaurant':restaurant.id , 'categorie':categorie.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block">Editer</button></a>
+     <a href="{{path('actived_plat_menu',{'plats': plats.id,'restaurant':restaurant.id , 'categorie':categorie.id  } )}}"  <button type="button"class="btn btn-success btn-lg btn-block">
+     {% if plats.actived == "0" %}
+       
+       Activer le plat
+     {% else %}
+       
+       desactiver le plat
+     {% endif %}
+     
+     </button></a>
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+{% else %}
+<div class="jumbotron text-center">
+<p class="h1 mt-5 text-center">Aucun plats pour cette catégorie  </br> <a href="{{path('add_plat_menu',{'restaurant':restaurant.id , 'categorie':categorie.id} )}}">  <button type="button"class="btn btn-success btn-lg btn-lg"> creer des  plats </button> </a> </p>
+</div>
+{% endif %}
+{% endblock %}

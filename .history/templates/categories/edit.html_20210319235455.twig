@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier les informations de la categorie{% endblock %}
+
+
+{% block body %}
+    <div class="jumbotron text-center">
+                    <h4 class="text-uppercase">Modifier les informations de la catégorie </h4>
+        </div>      
+
+    <div class="row  mt-5 ">
+    
+        <div class="col-md-6 mx-auto">
+            {{form_start(editCategorie)}}
+                
+                {{form_row(editCategorie.nom, {'attr' : {'placeholder':'Nom du plat'}}) }}
+                {{form_row(editCategorie.description, {'attr' : {'placeholder':'description'}}) }}
+                {{form_row(editCategorie.imageFile ) }} 
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Mettre à jour
+             
+                </button>
+            
+            {{ form_end(editCategorie) }}
+                          
+                  
+
+        </div>
+
+{% endblock %}

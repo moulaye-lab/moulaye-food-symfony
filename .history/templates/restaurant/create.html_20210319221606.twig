@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Creer un restaurant{% endblock %}
+
+{% block body %}
+                <h1 class="text-center text-uppercase mt-4">Creer un restaurant </h1>
+
+    <div class="row  mt-5 ">
+
+        <div class="col-md-6 mx-auto">
+            {{form_start(createResto)}}
+                {{form_row(createResto.nom, {'attr' : {'placeholder':'Nom du restaurant'}}) }}
+                {{form_row(createResto.specialite, {'attr' : {'placeholder':'specialite'}}) }}
+                {{form_row(createResto.localisation, {'attr' : {'placeholder':'localisation'}}) }} 
+                 {{form_row(createResto.telephone, {'attr' : {'placeholder':'Numero de telephone'}}) }}
+                 {{form_row(createResto.description, {'attr' : {'placeholder':'Décrivez votre restaurant'}}) }}
+
+        </div>
+
+        <div class="col-md-6">         
+                {{form_row(createResto.twitter, {'attr' : {'placeholder':'lien twitter'}}) }}
+                {{form_row(createResto.facebook, {'attr' : {'placeholder':'lien facebook'}}) }}
+                {{form_row(createResto.instagram, {'attr' : {'placeholder':'lien instagram'}}) }}
+                {{form_row(createResto.imageFile) }} 
+                {{form_row(createResto.imagesRestos) }} 
+        </div>
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Ajouter 
+             
+                </button>
+            
+            {{form_end(createResto)}}
+        </div>
+    </div>
+
+{% endblock %}
