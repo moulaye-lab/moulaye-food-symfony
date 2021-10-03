@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center mt-3">VEUILLEZ SELECTIONNER UN RESTAURANT</h1>
+
+
+{% for row in restaurants|batch(3) %}
+    <div class="row mt-5" >
+       {% for restaurant in row %}
+
+
+        <div class="col-md-4 text-center"> 
+  
+   
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">{{restaurant.nom}}</div>
+    <div class="card-body">
+         
+         <img src="{{ (restaurant.imageName ? vich_uploader_asset(restaurant,'imageFile') : asset('build/images/logo.jpg')) | imagine_filter('images_medium')}}"
+
+        class="w-100 rounded-top"  alt="{{restaurant.nom}}"/>
+        
+    </div>
+    </div>
+    </div>
+    
+ {% endfor %}
+ </div>
+{% endfor %}
+{% endblock %}

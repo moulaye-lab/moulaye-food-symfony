@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+
+
+
+{% for item in restaurants %}
+
+{{item.nom}}
+    
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Restaurant</title>
+        <link rel="stylesheet" href="{{asset('build/cssTemplates/css/normalize.css')}}            ">
+        <link rel="stylesheet" href=" {{asset('build/cssTemplates/css/main.css')}}" media="screen" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{asset('build/cssTemplates/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('build/cssTemplates/css/style-portfolio.css')}}">
+        <link rel="stylesheet" href="{{asset('build/cssTemplates/css/picto-foundry-food.css')}}" />
+        <link rel="stylesheet" href="{{asset('build/cssTemplates/css/jquery-ui.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{asset('build/cssTemplates/css/font-awesome.min.css')}}" rel="stylesheet">
+    </head>
+
+    <body>
+
+        
+         
+        <div id="top" class="starter_container bg">
+            <div class="follow_container">
+                <div class="col-md-6 col-md-offset-3">
+                                        <h2 class="white second-title">" AKWABA "</h2>
+
+                    <h2 class="top-title">{{restaurant.nom}}</h2>
+                    <hr>
+                </div>
+            </div>
+        </div><br><br>
+
+      
+
+
+       <!-- ============ Our Bread  ============= -->
+
+
+        <section id="bread" class=" description_content">
+            <div  class="bread background_content">
+                <h1>QUI SOMMES-NOUS</h1>
+            </div>
+            <div class="text-content container"> 
+                <div class="col-md-12">
+                    
+                    <p class="desc-text">{{restaurant.description}}</p>
+                </div>
+               
+            </div>
+        </section>
+
+
+        
+        <!-- ============ Featured Dish  ============= -->
+
+        <section id="featured" class="description_content">
+            <div  class="featured background_content">
+                <h1>IMAGES DU RESTAURANTS</h1>
+            </div>
+            <div class="text-content container"> 
+                {% if images | length > 0 %}
+                
+                {% for row in images|batch(3) %}
+    <div class="row mt-2 " >
+       {% for images in row %}
+        <div class="col-md-4 ml-7"> 
+  
+    
+   
+         
+         <img src="{{ ( asset('/uploads/images_restaurants/' ~ images.name) | imagine_filter('images_medium')) }}"
+
+         alt="images" />
+    </div>
+   
+
+ {% endfor %}
+ </div>
+{% endfor %}
+
+{% else %}
+    
+    <h2>Aucunes Images disponibles pour ce restaurant</h2>
+
+{% endif %}
+</div>
+
+             </div>   
+        </section>
+
+        <!-- ============ Reservation  ============= -->
+{% if resto|length > 0 %}
+
+        <section  id="reservation"  class="description_content">
+            <div class="featured background_content">
+                <h1>DECOUVREZ NOS AUTRES RESTAURANTS</h1>
+            </div>
+            <div class="text-content container"> 
+                {% for row in restos|batch(3) %}
+    <div class="row mt-2 " >
+       {% for restos in row %}
+        <div class="col-md-4 ml-7"> 
+  
+    
+    <div class="card" >
+    <div class="card-header"><H3 class="text-red primary-text">{{restos.nom}}</H3></div>
+    <div class="card-body">
+         
+         <img src="{{ (restos.imageName ? vich_uploader_asset(restos,'imageFile') : asset('build/images/images.jpg')) | imagine_filter('images_medium')}}"
+
+        class="w-100 rounded-top"  alt="{{restos.nom}}"/>
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+</div>
+                                    </div>
+                                    
+                                    
+                </div><!-- End Inner -->
+            </div>
+        </section>
+{% endif %}
+        <!-- ============ Social Section  ============= -->
+      
+        <section class="social_connect">
+            <div class="text-content container"> 
+                <div class="col-md-6">
+                    <span class="social_heading">PARTAGEZ</span>
+                    <ul class="social_icons">
+                        <li> <a class="icon-partage" href="https://twitter.com/share?url=https://codepen.io/buh31/full/EVYEXa&text=JS Partage réseaux sociaux" target="_blank">
+                   <img src="{{asset('build/images/facebook.jpg')}}" width="50"/>
+        </a></li>
+                        <li> <a class="icon-partage" href="https://twitter.com/share?url=https://codepen.io/buh31/full/EVYEXa&text=JS Partage réseaux sociaux" target="_blank">
+                   <img src="{{asset('build/images/instagram.jpg')}}" width="50"/>
+        </a>  </li>
+                        <li><a class="icon-partage" href="https://twitter.com/share?url=https://codepen.io/buh31/full/EVYEXa&text=JS Partage réseaux sociaux" target="_blank">
+                   <img src="{{asset('build/images/twitter.jpg')}}" width="50"/>
+      </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <span class="social_heading">CONTACTS</span>
+                    {% if restaurant.telephone %}
+                                          <span class="social_info"><a class="color_animation" href="{{restaurant.telephone}}">{{restaurant.telephone}}</a></span>
+  
+                    {% else %}
+                                            <span class="social_info"><a class="color_animation" href="#">PAS DE NUMEROS DISPONIBLES</a></span>
+
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ Contact Section  ============= -->
+
+        <section id="contact">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+           
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ Footer Section  ============= -->
+
+        <footer class="sub_footer">
+            <div class="container">
+                <div class="col-md-12"><p class="sub-footer-text text-center">Back to <a href="#top">TOP</a></p>
+                </div>
+            </div>
+        </footer>
+
+
+        <script type="text/javascript" src="       {{asset('build/jsTemplates/js/jquery-1.10.2.min.js')}}"> </script>
+        <script type="text/javascript" src=" {{asset('build/jsTemplates/js/bootstrap.min.js')}}"                      ></script>
+        <script type="text/javascript" src="   {{asset('buid/jsTemplates/js/jquery-1.10.2.js')}}     "></script>     
+        <script type="text/javascript" src="   {{asset('build/jsTemplates/js/jquery.mixitup.min.js')}}" ></script>
+        <script type="text/javascript" src=" {{asset('build/jsTemplates/js/main.js')}}" ></script>
+
+    </body>
+</html>   

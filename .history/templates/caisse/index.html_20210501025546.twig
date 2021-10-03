@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CaisseController!{% endblock %}
+
+{% block body %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+
+ {% if commandes != null %}
+        
+        <h3 class="text-center text-muted mt-5">Caisse</h3> 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Produit</th>
+                
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix Unitaire</th>
+                <th scope="col">Total</th>
+                <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+        <tbody>
+
+         {% for command in commandes %}
+
+            {% for com in command.commande %}
+                
+            
+            {% if com.servi == true %}
+            
+
+
+
+            <tr class="table-active">
+            <th scope="row">{{item.product.nom}}</th>
+            <td><a href="{{path('app_add_quantity', {id:item.product.id,action:"diminuer"})}}"><span class="material-icons">
+add
+</span></a>{{item.quantity}}<a href="{{path('app_add_quantity', {id:item.product.id,action:"add"})}}"><button>a</button></a></td>
+            <td>{{item.product.prix}}</td>
+            <td>{{item.product.prix * item.quantity}}</td>
+            <td>
+                <a href='{{path('app_remove_product', {id:item.product.id})}}' class="btn btn-sm btn-danger">
+                    <i class="fas fa-trash">Supprimer</i>
+                </a>
+            </td>
+
+            </tr>
+            {% endif %}
+         {% endfor %}
+        {% endfor %}
+        </tbody>
+        <tfoot>
+                <tr>
+
+                <td colspan="3" class="text-right">TOTAL :</td>
+                <td colspan="3">{{total}} FCFA
+                </td>
+
+
+                </tr>
+                <tr>
+                                    <td colspan="3" class="text-right"><a href="{{path('app_commander')}}"><button class="btn-primary btn-lg">COMMANDER</button></a></td>
+
+                </tr>
+
+        </tfoot>
+        </table>
+  {% else %}
+              <h3 class="text-center text-muted mt-5">VOTRE PANIER EST VIDE</h3> 
+
+  {% endif %}
+        
+
+{% endblock %}
+
+{% endblock %}

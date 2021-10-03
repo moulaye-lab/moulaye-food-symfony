@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}COMMANDES{% endblock %}
+
+{% block body %}
+
+
+ 
+
+{% if commandes|length > 0 %}
+
+
+{% for row in commandes|batch(4) %}
+
+
+    <div class="row mt-2" >
+       {% for commande in row %}
+        <div class="col-md-3"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header text-center text-uppercase">{{commande.nomPlat}}</div>
+    <div class="card-body">
+         
+        <h4 class="card-title text-center text-bold">{{commande.prix}} Fcfa</h4>
+        
+        <p class="card-text ">{{ commande.tableResto}}</p>
+
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+{% else %}
+
+<p class="h1 mt-5 text-center text-muted">Aucun plats pour cette catégorie  </p>
+
+{% endif %}
+{% endblock %}

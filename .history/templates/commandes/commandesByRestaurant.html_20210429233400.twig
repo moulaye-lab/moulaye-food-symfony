@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}COMMANDES{% endblock %}
+
+{% block body %}
+
+
+ 
+
+
+
+{% for row in commandesByTable|batch(4) %}
+
+{% if commandesByTable.commande != null %}
+
+    <div class="row mt-2" >
+       {% for commande in row %}
+        <div class="col-md-3"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header text-center text-uppercase">{{commande.table}}</div>
+    
+    </div>
+
+ {% endfor %}
+ </div>
+ {% endif %}
+{% endfor %}
+
+
+{% endblock %}

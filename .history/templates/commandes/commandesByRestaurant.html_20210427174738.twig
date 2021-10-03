@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}COMMANDES{% endblock %}
+
+{% block body %}
+
+
+ 
+
+{% if commandes|length > 0 %}
+
+
+{% for row in commandes|batch(4) %}
+
+
+    <div class="row mt-2" >
+       {% for commande in row %}
+        <div class="col-md-3"> 
+  
+    
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header text-center text-uppercase">{{commande.nomPlat}}</div>
+    <div class="card-body">
+         
+        <h4 class="card-title text-center text-bold">{{plats.prix}} Fcfa</h4>
+        
+        <h4 class="card-text text-center mt-3 ">Description</h4>
+        <p class="card-text ">{{ plats.description ? plats.description : "Aucune description pour ce plat"}}</p>
+      <a href="{{path('edit_plat_menu',{'restaurant':restaurant.id , 'categorie':categorie.id} )}}"  <button type="button"class="btn btn-success btn-lg btn-block">Editer</button></a>
+     <a href="{{path('actived_plat_menu',{'plats': plats.id,'restaurant':restaurant.id , 'categorie':categorie.id } )}}"  <button type="button"class="btn btn-success btn-lg btn-block">
+     {% if plats.actived == "0" %}
+       
+       Activer le plat
+     {% else %}
+       
+       desactiver le plat
+     {% endif %}
+     
+     </button></a>
+    </div>
+    </div>
+    </div>
+
+ {% endfor %}
+ </div>
+{% endfor %}
+{% else %}
+<div class="jumbotron text-center">
+<p class="h1 mt-5 text-center">Aucun plats pour cette catégorie  </br> <a href="{{path('add_plat_menu',{'restaurant':restaurant.id , 'categorie':categorie.id} )}}">  <button type="button"class="btn btn-success btn-lg btn-lg"> creer des  plats </button> </a> </p>
+</div>
+{% endif %}
+{% endblock %}

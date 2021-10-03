@@ -1,0 +1,100 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajouter Tables{% endblock %}
+
+
+{% block body %}
+    
+
+    <div class="row  mt-5 ">
+        <h3 class=" mx-auto">Vous avez  {{totalTables | length}}   Tables dans votre restaurant {{restaurant.nom}} </h3>
+
+        <div class="col-md-6 mx-auto">
+            {{form_start(nbresTables)}}
+                {{form_row(nbresTables.nombresTables)}}
+                
+
+                <button type="submit" class="btn btn-primary btn-block"> 
+                
+                    Ajouter
+             
+                </button>
+            
+            {{form_end(nbresTables)}}
+                          
+                  
+
+        </div>
+           {% if totalTables | length > 1 %}
+           
+            <table class="table table-striped ">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Numero de table</th>
+    
+      
+      <th scope="col"> Etat </th>
+
+
+
+     
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+   {% for tables in totalTables %}
+  <tbody>
+  
+    <tr>
+      {% if tables.Nom == null %}
+      <td>Aucun Nom de table</td>
+      {% else %}
+        
+        <td>{{tables.Nom}}</td>
+  
+      {% endif %}
+
+      
+      <td>{{tables.Numero}}<td>
+
+        {% if tables.Reserved == true %}
+       <td>Table Reservé <br> 
+          Code de reservation : {{table.codeReservation}}
+        
+        </td>
+
+        {% elseif table.Reserved == false %} 
+
+                   <td>Table Libre <br> 
+
+          
+        {% endif %}
+
+    
+       <td><a href="{{path('app_edit_tables',{'id':tables.id})}}">Editer</a> </br>
+       
+       
+        <a href="{{path('app_table_reservation',{id:tables.id})}}"> 
+        
+        {% if tables.reserved == 0 %}
+          Reserver la table
+         {% elseif tables.reserved == 1 %} 
+          Libérer la table
+        {% endif %}
+        
+         </a>
+       
+       
+       
+       </br> <a href="{{path('app_uploads_tables', {id:tables.id})}}"> Telecharger la fiche table</a></td> </br>
+       
+    </tr>
+    
+  </tbody>
+  {% endfor %} 
+    
+</table>
+
+{% endif %}
+{% endblock %}
